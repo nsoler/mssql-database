@@ -7,9 +7,8 @@ services:
       - backplane
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      ACCEPT_EULA: Y
-      MSSQL_SA_PASSWORD: 4swK1u7KGY4I
-      MSSQL_OLDSA_PASSWORD: 6H/wb4S6$lN$
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: '6H/wb4S6$lN$'
     volumes:
       - sqlserver_data:/var/opt/mssql
     ports:
@@ -21,14 +20,21 @@ services:
     restart: always
     ports:
       - "4222:4222"
-      - "8222:8222" # Optional: for monitoring
-    command: ["--user", "fcsnats", "--pass", "O-mjh74d+202", "--cluster_name", "FcsEventCluster", "--cluster", "nats://0.0.0.0:6222"] # Add username and password
+      - "8222:8222"
+    command:
+      - "--user"
+      - "fcsnats"
+      - "--pass"
+      - "O-mjh74d+202"
+      - "--cluster_name"
+      - "FcsEventCluster"
+      - "--cluster"
+      - "nats://0.0.0.0:6222"
     networks:
       - backplane
 
 volumes:
   sqlserver_data:
-
 
 networks:
   backplane:
