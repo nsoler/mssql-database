@@ -1,14 +1,34 @@
-version: '3.8'
-
+version: "3.9"
 services:
   mssql:
+    restart: always
+    container_name: mssql
+    networks:
+      - backplane
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=${MSSQL_SA_PASSWORD}
-      - MSSQL_PID=Developer
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: 6H/wb4S6$lN$
+    volumes:
+      - sqlserver_data:/var/opt/mssql
     ports:
       - "1433:1433"
-    volumes:
-      - ../files/mssql-data:/var/opt/mssql
-    restart: unless-stopped
+
+  nats:
+    image: nats:latest
+    container_name: nats
+    restart: always
+    ports:
+      - "4222:4222"
+      - "8222:8222" # Optional: for monitoring
+    command: ["--user", "fcsnats", "--pass", "O-mjh74d+202", "--cluster_name", "FcsEventCluster", "--cluster", "nats://0.0.0.0:6222"] # Add username and password
+    networks:
+      - backplane
+
+volumes:
+  sqlserver_data:
+
+
+networks:
+  backplane:
+    name: backplane
