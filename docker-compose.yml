@@ -8,7 +8,8 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: Y
-      MSSQL_SA_PASSWORD: 6H/wb4S6$lN$
+      MSSQL_SA_PASSWORD: 4swK1u7KGY4I
+      MSSQL_OLDSA_PASSWORD: 6H/wb4S6$lN$
     volumes:
       - sqlserver_data:/var/opt/mssql
     ports:
