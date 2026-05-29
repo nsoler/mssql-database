@@ -14,20 +14,6 @@ services:
       - sqlserver_data:/var/opt/mssql
     ports:
       - "1433:1433"
-  
-  db-init:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    depends_on:
-      - mssql
-    # This command waits for SQL Server to start, then runs the create database command
-    command: >
-      bash -c '
-      until /opt/mssql-tools/bin/sqlcmd -S db -U sa -P "Theron2026!!" -Q "CREATE DATABASE fcs_fostercare_db";
-      do
-        echo "Waiting for SQL Server to start..."
-        sleep 2
-      done
-      '
 
   nats:
     image: nats:latest
