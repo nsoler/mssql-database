@@ -7,9 +7,9 @@ services:
       - backplane
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "6H/wb4S6$lN$"
-      MSSQL_PID: "Developer"
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Theron2026!!
+      - MSSQL_PID=Developer
     volumes:
       - sqlserver_data:/var/opt/mssql
     ports:
