@@ -8,7 +8,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
+      - MSSQL_SA_PASSWORD=Theron2026##
       - MSSQL_PID=Developer
     volumes:
       - sqlserver_data:/var/opt/mssql
@@ -24,9 +24,9 @@ services:
       - "8222:8222"
     command:
       - "--user"
-      - "${NATS_USER}"
+      - "fcsnats"
       - "--pass"
-      - "${NATS_PASSWORD}"
+      - "O-mjh74d+202"
       - "--cluster_name"
       - "FcsEventCluster"
       - "--cluster"
