@@ -9,7 +9,9 @@ services:
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "6H/wb4S6$lN$"
-      TRUSTED_CONNECTIONS: "True"
+      MSSQL_PID: "Developer"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
     ports:
       - "1433:1433"
 
@@ -32,6 +34,9 @@ services:
     networks:
       - backplane
 
+volumes:
+  sqlserver_data:
+  
 networks:
   backplane:
     name: backplane
