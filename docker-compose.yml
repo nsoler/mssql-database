@@ -8,11 +8,8 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: Theron2026!!
-      MSSQL_OLDSA_PASSWORD: "6H/wb4S6$lN$"
+      MSSQL_SA_PASSWORD: "6H/wb4S6$lN$"
       TRUSTED_CONNECTIONS: "True"
-    volumes:
-      - sqlserver_data:/var/opt/mssql
     ports:
       - "1433:1433"
 
@@ -34,9 +31,6 @@ services:
       - "nats://0.0.0.0:6222"
     networks:
       - backplane
-
-volumes:
-  sqlserver_data:
 
 networks:
   backplane:
